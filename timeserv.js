@@ -1,0 +1,16 @@
+var net = require('net')
+
+var server = net.createServer(function (socket) {
+  var date = new Date()
+  socket.write(date.getFullYear().toString())
+  socket.write('-')
+  socket.write(("0" + (date.getMonth() + 1)).slice(-2))
+  socket.write('-')
+  socket.write(date.getDate().toString())
+  socket.write(' ')
+  socket.write(("0" + date.getHours()).slice(-2))
+  socket.write(':')
+  socket.write(("0" + date.getMinutes()).slice(-2))
+  socket.end('\n')
+})
+server.listen(process.argv[2])
